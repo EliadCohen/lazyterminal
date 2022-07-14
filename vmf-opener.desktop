@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=vmf
+Exec=~/scripts/vimfilehandler.sh %u
+Type=Application
+Terminal=true
+MimeType=x-scheme-handler/vmf;

@@ -3,7 +3,9 @@
 grep_irn () {
    #echo "Running in grep_irn"
    #echo "$COMMAND"
-   /usr/bin/grep -irn $COMMAND | sed 's/:/ +/'
+   # TODO This will fail if given a relative path. Use readlink -f to get full path of file.
+   #   May require another sed
+   /usr/bin/grep -irn $COMMAND | sed 's/.*:[0-9]\+/file:& /' 
 }
 
 just_grep () {
