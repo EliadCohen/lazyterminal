@@ -1,29 +1,21 @@
 #!/bin/bash
 
 grep_irn () {
-   #echo "Running in grep_irn"
-   #echo "$COMMAND"
-   # TODO This will fail if given a relative path. Use readlink -f to get full path of file.
-   #   May require another sed
-   /usr/bin/grep -irn $COMMAND | sed 's/.*:[0-9]\+/file:& /' 
+   # TODO This will fail if given a relative path. Use readlink -f to
+   # get full path of file.
+    /usr/bin/grep -irn $@ | sed 's/.*:[0-9]\+/file:& /'
 }
 
 just_grep () {
-  #echo "In just_grep"
-  #echo "$COMMAND"
-  /usr/bin/grep $COMMAND
+    /usr/bin/grep $@
 }
 
-FLAGS=$1
-case "${FLAGS}" in
-  -eliad*) 
-	  shift
-          COMMAND=$@
-	  grep_irn
-          ;;
-  *) 
-	 COMMAND=$@
-	 just_grep
-         ;;
-esac
+# This black magic is called "Shell Parameter Expansion"
+# https://www.gnu.org/software/bash/manual/bash.html#Shell-Parameter-Expansion
+sanitized_args=${@//-eliad/ }
 
+if [[ "$@" =~ "-eliad" ]]; then
+    grep_irn $sanitized_args
+else
+    just_grep $sanitized_args
+fi
