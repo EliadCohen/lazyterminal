@@ -1,8 +1,19 @@
+# Lazyvim grep enhancement using bash v0.1 - Use at your own peril
+
+This lets you pass a "special" grep flag that generates clickable file links (Running grep -irn ...) which will open the file matches
+in a new Terminal
+
 ## TODO
 
-[v] Write a handler script for the mime-type
+[ ] Write instructions on aliasing grep to grem
+
+[ ] Open file in new tab, not new terminal
+
+[ ] Implement using escape sequences for links in sed and then use a custom mimetype
 
 [ ] Create a new mime-type
+
+[v] Write a handler script for the mime-type
 
 [v] Modify grep output when using (-n)
 
