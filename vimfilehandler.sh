@@ -5,7 +5,8 @@
 
 INPUT="$@"
 #echo "$INPUT"
-URI=`echo "$INPUT" | sed 's/vmf:\/\///'` 
+#URI=`echo "$INPUT" | sed 's/vmf:\/\///'` 
+URI=`echo "$INPUT" | sed 's/file://'` 
 #echo "$URI"
 VIMINPUT=`echo "$URI" | sed 's/:/ +/'`
 #echo "$VIMINPUT"
